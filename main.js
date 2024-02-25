@@ -35,8 +35,14 @@ const handleGenerateAsteroid = () => {
   const randomY = -randomHeight;
   // random speed
   const randomSpeed = Math.random() * 2 + 5;
+
+  //random image pour l'ennemi
+  const randomImg = [
+    "vite.svg",
+    "tache.png"
+  ];
   asteroids.push(
-    new Asteroid(randomX, randomY, randomWidth, randomHeight, randomSpeed)
+    new Asteroid(randomX, randomY, randomWidth, randomHeight, randomSpeed, randomImg)
   );
 };
 

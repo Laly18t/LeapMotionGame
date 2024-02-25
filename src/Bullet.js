@@ -16,7 +16,7 @@ export default class Bullet {
 
   draw() {
     const ctx = globals.engine.context;
-    ctx.fillStyle = "blue";
+    ctx.fillStyle = "red";
     ctx.fillRect(this.x, this.y, this.width, this.height);
   }
 }
