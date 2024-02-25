@@ -137,6 +137,8 @@ function checkAsteroidHits() {
 
       if (player.lives == 0) {
         console.log("Game Over");
+        livesCounterElement.innerHTML = "Game over !";
+        
         clean();
         init();
       }
@@ -147,6 +149,7 @@ function checkAsteroidHits() {
 
 const fpsCounterElement = document.querySelector(".fps-counter");
 const pointsCounterElement = document.querySelector(".points-counter");
+const livesCounterElement = document.querySelector(".lives-counter");
 
 
 const gameLoop = (timeStamp) => {
@@ -160,6 +163,7 @@ const gameLoop = (timeStamp) => {
   fpsCounterElement.innerHTML = fps;
 
   pointsCounterElement.innerHTML = player.counter;
+  livesCounterElement.innerHTML = player.lives;
 
 
 

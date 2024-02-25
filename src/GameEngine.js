@@ -3,6 +3,9 @@ import globals from "./globals";
 export default class GameEngine {
   constructor(canvasID) {
     this.canvas = document.querySelector(canvasID)
+
+    this.backgroundImage = new Image();
+    this.backgroundImage.src = "backgroundSrc";
   }
 
   start() {
@@ -16,6 +19,6 @@ export default class GameEngine {
   }
 
   loop() {
-
+    this.context.drawImage(this.backgroundImage, 0, 0, this.canvas.width, this.canvas.height);
   }
 }
