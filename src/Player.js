@@ -1,13 +1,18 @@
 import globals from "./globals";
 
 export default class Player {
-  constructor(x, y, width, height) {
+  constructor(x, y, width, height, lives, counter) {
     this.x = x;
     this.y = y;
     this.width = width;
     this.height = height;
+    this.lives = lives;
+    this.counter = counter;
 
     this.speed = 5;
+
+    this.spaceShipImage = new Image();
+    this.spaceShipImage.src = "spaceShip.png";
   }
 
   update(secondsPassed) {
@@ -29,7 +34,6 @@ export default class Player {
 
   draw() {
     const ctx = globals.engine.context;
-    ctx.fillStyle = "red";
-    ctx.fillRect(this.x, this.y, this.width, this.height);
+    ctx.drawImage(this.spaceShipImage, this.x, this.y, this.width, this.height);
   }
 }

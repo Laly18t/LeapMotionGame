@@ -8,6 +8,8 @@ export default class Asteroid {
 
     this.speed = speed;
 
+    console.log("vitesse", speed);
+
     // initialisation de l'image
 
     //choisir une image au hasard
@@ -18,10 +20,13 @@ export default class Asteroid {
 
   update(secondsPassed) {
     this.y += this.speed;
+  
   }
 
   draw() {
     const ctx = globals.engine.context;
+
+    
 
     //dessiner une image
     ctx.drawImage(this.asteroidImage, this.x, this.y, this.width, this.height);

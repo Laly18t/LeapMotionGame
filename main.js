@@ -23,7 +23,7 @@ const getMouseCoords = (event, gameCanvas) => {
 };
 
 const handleFire = () => {
-  bullets.push(new Bullet(player.x + player.width / 2 - 5, player.y, 10, 10));
+  bullets.push(new Bullet(player.x + player.width / 2 - 5, player.y, 3, 10));
 };
 
 const handleGenerateAsteroid = () => {
@@ -38,8 +38,10 @@ const handleGenerateAsteroid = () => {
 
   //random image pour l'ennemi
   const randomImg = [
-    "vite.svg",
-    "tache.png"
+    "asteroid1.png",
+    "asteroid2.png",
+    "asteroid3.png",
+    "asteroid4.png",
   ];
   asteroids.push(
     new Asteroid(randomX, randomY, randomWidth, randomHeight, randomSpeed, randomImg)
@@ -88,7 +90,7 @@ const init = () => {
   globals.engine.start();
   initEvents();
 
-  player = new Player(100, 100, 50, 50);
+  player = new Player(100, 100, 50, 50, 3, 0);
   player.draw();
 
   window.requestAnimationFrame(gameLoop);
@@ -115,6 +117,7 @@ function checkBulletHits() {
           console.log("collides");
           asteroids.splice(k, 1);
           bullets.splice(j, 1);
+          player.counter += 5;
           // Player1.points += 1;
         }
       }
@@ -127,13 +130,25 @@ function checkAsteroidHits() {
     for (let k = asteroids.length - 1; k >= 0; k--) {
       if (collides(asteroids[k], player)) {
         asteroids.splice(k, 1);
+        player.counter -= 50;
+        player.lives -= 1;
+        console.log("- 1 vie !");
+      }
+
+      if (player.lives == 0) {
         console.log("Game Over");
+        clean();
+        init();
       }
     }
   }
 }
 
+
 const fpsCounterElement = document.querySelector(".fps-counter");
+const pointsCounterElement = document.querySelector(".points-counter");
+
+
 const gameLoop = (timeStamp) => {
   // Calculate the number of seconds passed since the last frame
   secondsPassed = (timeStamp - oldTimeStamp) / 1000;
@@ -143,6 +158,11 @@ const gameLoop = (timeStamp) => {
   //Calculate fps
   fps = Math.round(1 / secondsPassed);
   fpsCounterElement.innerHTML = fps;
+
+  pointsCounterElement.innerHTML = player.counter;
+
+
+
 
   // process input
 
