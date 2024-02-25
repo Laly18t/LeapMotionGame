@@ -5,7 +5,7 @@ export default class GameEngine {
     this.canvas = document.querySelector(canvasID)
 
     this.backgroundImage = new Image();
-    this.backgroundImage.src = "backgroundSrc";
+    this.backgroundImage.src = "space.png";
   }
 
   start() {
