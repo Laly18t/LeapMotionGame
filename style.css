@@ -1,6 +1,6 @@
 .viewport {
-  width: 500px;
-  height: 800px;
+  width: 1080px;
+  height: 1920px;
   margin: 50px auto 0;
   border: 1px solid tomato;
   position: relative;
@@ -30,6 +30,7 @@ body {
 }
 
 canvas {
+  background-color: black;
   border: solid 1px tomato;
   position: relative;
 }

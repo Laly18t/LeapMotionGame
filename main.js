@@ -49,11 +49,28 @@ const handleGenerateAsteroid = () => {
 };
 
 const initEvents = () => {
+
+  const fireWS = new WebSocket("ws://localhost:8080");
+  fireWS.onopen = () => {
+    console.log("WebSocket Opened");
+  };
+
+  fireWS.onmessage = (event) => {
+    console.log(event.data);
+    if (event.data == 'fire') {
+      handleFire();
+    }
+
+    if (event.data == 'asteroid') {
+      handleGenerateAsteroid();
+    }
+  }
+
   // enable leap motion
   const leapMotion = new LeapMotion(({ x, y }) => {
     globals.mouse.coords.x = x * globals.viewport.width;
 
-    let t = y * 300;
+    let t = y * 600;
     // invert t to have the origin at the bottom left
     t = globals.viewport.height - t;
 
@@ -76,11 +93,12 @@ const initEvents = () => {
 
   // on keydown, if the key is space, fire
   window.addEventListener("keydown", function (event) {
-    if (event.code === "Space") {
-      handleFire();
+    if (event.code === "KeyO") {
+      // console.log('fire');
+      // handleFire();
     }
     if (event.code === "KeyE") {
-      handleGenerateAsteroid();
+      // handleGenerateAsteroid();
     }
   });
 };
@@ -138,9 +156,9 @@ function checkAsteroidHits() {
       if (player.lives == 0) {
         console.log("Game Over");
         livesCounterElement.innerHTML = "Game over !";
-        
-        clean();
-        init();
+
+        // clean();
+        // init();
       }
     }
   }
@@ -171,7 +189,7 @@ const gameLoop = (timeStamp) => {
   // process input
 
   // randomgeneration of asteroids every random seconds between 0.2 and 1sec
-  if (Math.random() < 0.01) {
+  if (Math.random() < 0.05) {
     handleGenerateAsteroid();
   }
 
@@ -196,7 +214,7 @@ const gameLoop = (timeStamp) => {
 function clean() {
   // Remove bullets that are out of the canvas
   bullets = bullets.filter((bullet) => bullet.y > 0);
-  asteroids = asteroids.filter((asteroid) => !(asteroid.y > 800));
+  asteroids = asteroids.filter((asteroid) => !(asteroid.y > globals.viewport.height));
 }
 
 function updateCanvas() {
