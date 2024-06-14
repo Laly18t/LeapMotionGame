@@ -1,8 +1,8 @@
 const globals = {
   debug: false,
   viewport: {
-    width: 540,
-    height: 1005,
+    width: 840,
+    height: 805,
   },
   engine: null,
   mouse: {

@@ -94,8 +94,8 @@ const initEvents = () => {
   // on keydown, if the key is space, fire
   window.addEventListener("keydown", function (event) {
     if (event.code === "KeyO") {
-      // console.log('fire');
-      // handleFire();
+      console.log('fire');
+      handleFire();
     }
     if (event.code === "KeyE") {
       // handleGenerateAsteroid();
@@ -136,7 +136,7 @@ function checkBulletHits() {
           asteroids.splice(k, 1);
           bullets.splice(j, 1);
           player.counter += 5;
-          // Player1.points += 1;
+          // player1.points += 1;
         }
       }
     }
@@ -157,8 +157,8 @@ function checkAsteroidHits() {
         console.log("Game Over");
         livesCounterElement.innerHTML = "Game over !";
 
-        // clean();
-        // init();
+        clean();
+        init();
       }
     }
   }
