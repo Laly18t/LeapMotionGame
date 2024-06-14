@@ -23,7 +23,7 @@ const getMouseCoords = (event, gameCanvas) => {
 };
 
 const handleFire = () => {
-  bullets.push(new Bullet(player.x + player.width / 2 - 5, player.y, 3, 10));
+  bullets.push(new Bullet(player.x + player.width / 2 - 5, player.y, 10, 10));
 };
 
 const handleGenerateAsteroid = () => {
